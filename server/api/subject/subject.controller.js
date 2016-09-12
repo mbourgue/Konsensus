@@ -21,6 +21,10 @@ function handleError(res, statusCode) {
   };
 }
 
+function interpretTags(str) {
+  return String(str).split(';');
+}
+
 // Get list of Subjects
 export function index(req, res) {
   return Subject.find().exec()
@@ -30,7 +34,11 @@ export function index(req, res) {
 
 // Create a Subject
 export function create(req, res) {
-  return Subject.create(req.body)
+  
+  req.body.tags = interpretTags(req.body.tags);
+  console.log('TAGS:' + req.body.tags);
+
+  Subject.create(req.body)
     .then(respondWithResult(res, 201))
     .catch(handleError(res));
 }

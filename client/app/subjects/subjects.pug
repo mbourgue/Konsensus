@@ -13,7 +13,7 @@ div.container
       th(style="text-align: left;")
         span(style="font-size: 1.25em;") {{ subject.title }}
         br
-        span.label.label-default(ng-repeat="tag in subject.tags") {{ tag.name }} 
+        span.label.label-default(ng-repeat="tag in subject.tags") {{ tag }} 
       th {{ subject.user.name }}
         br
         div(style="")

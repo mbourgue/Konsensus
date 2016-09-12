@@ -8,6 +8,7 @@ var SubjectSchema = new mongoose.Schema({
   views: Number,
   // votes: [{ author: String, }],
   // answers: ,
+  tags: [],
   shared: Number,
   chunks: [{  
               author: String,
