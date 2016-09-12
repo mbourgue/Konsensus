@@ -1,0 +1,10 @@
+div.container
+  h1 Create Subject
+
+  form(novalidate)
+    div.input-group
+      input(type="text" placeholder="title" ng-model="subject.title" required)
+    div.input-group
+      input(type="text" placeholder="tags ( put a ; )" ng-model="subject.tags")
+    div.input-group
+      input(type="submit" ng-click="subjects.create(subject)" value="create")

@@ -1,0 +1,32 @@
+h3 {
+  display: inline-block;
+  // vertical-align: middle;
+  margin-right: 10px;
+}
+
+table {
+  // background:  #000;
+
+  tr {
+
+    cursor: pointer;
+    transition: all 0.5s;
+
+    &:hover {
+      background: #eee !important;
+    }
+    
+    th {
+      font-weight: normal !important;
+      text-align: center;
+
+      .label {
+        margin-right: 3px;
+      }
+
+      &.border-right {
+        border-right: 1px solid #eee;
+      }
+    }
+  }
+}
