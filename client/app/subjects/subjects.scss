@@ -1,3 +1,5 @@
+@import 'show/show';
+
 h3 {
   display: inline-block;
   // vertical-align: middle;
@@ -17,6 +19,7 @@ table {
     }
     
     th {
+      position: relative;
       font-weight: normal !important;
       text-align: center;
 
@@ -26,6 +29,10 @@ table {
 
       &.border-right {
         border-right: 1px solid #eee;
+      }
+
+      .remove {
+        position: absolute; top: 0; right: 0; color: #ddd;
       }
     }
   }

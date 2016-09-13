@@ -27,7 +27,12 @@ function interpretTags(str) {
 
 // Get list of Subjects
 export function index(req, res) {
-  return Subject.find().exec()
+  
+  
+  
+  Subject.find()
+    .populate('author')
+    .exec()
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
@@ -36,9 +41,29 @@ export function index(req, res) {
 export function create(req, res) {
   
   req.body.tags = interpretTags(req.body.tags);
-  console.log('TAGS:' + req.body.tags);
+  // console.log('TAGS:' + req.body.tags);
+
+  req.body.author = req.user._id;
+
+  // console.log(JSON.stringify(req)+ ",  " + JSON.stringify(res));
 
   Subject.create(req.body)
     .then(respondWithResult(res, 201))
+    .catch(handleError(res));
+}
+
+export function show(req, res) {
+
+  return Subject.findById(req.params.id)
+        .exec()
+        .then(respondWithResult(res))
+        .catch(handleError(res));
+
+}
+
+export function remove(req, res) {
+  return Subject.remove({ _id: req.params.id })
+    .exec()
+    .then(respondWithResult(res))
     .catch(handleError(res));
 }

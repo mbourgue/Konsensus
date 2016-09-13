@@ -8,7 +8,7 @@ export default function routes($stateProvider) {
       url: '/subjects',
       template: require('./subjects.pug'),
       controller: 'SubjectsController',
-      // controllerAs: 'admin',
+      controllerAs: 'subjects',
       // authenticate: 'admin'
     })
     .state('subjects_create', {
@@ -17,5 +17,11 @@ export default function routes($stateProvider) {
       controller: 'CreateSubjectController',
       controllerAs: 'subjects',
       // template: 'hey'
+    })
+    .state('subjects_show', {
+      url: '/subjects/:id',
+      template: require('./show/show.pug'),
+      controller: 'ShowSubjectController',
+      controllerAs: 'subject'
     });
 }

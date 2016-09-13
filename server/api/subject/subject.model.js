@@ -3,6 +3,7 @@
 import mongoose from 'mongoose';
 
 var SubjectSchema = new mongoose.Schema({
+  author: { type: mongoose.Schema.Types.ObjectId, ref: "User" }, 
   title: String,
   date: { type: Date, default: Date.now() },
   views: Number,
@@ -10,8 +11,7 @@ var SubjectSchema = new mongoose.Schema({
   // answers: ,
   tags: [],
   shared: Number,
-  chunks: [{  
-              author: String,
+  chunks: [{  author: String,
               content: String,
               sources: [{ url: String }], 
               shared: Number,
