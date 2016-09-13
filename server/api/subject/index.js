@@ -12,4 +12,8 @@ router.get('/:id', controller.show);
 // router.patch('/:id', controller.create);
 router.delete('/:id', controller.remove);
 
+router.post('/:id/chunks', 
+// auth.isAuthenticated(), 
+controller.createChunk);
+
 module.exports = router;

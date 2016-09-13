@@ -1,7 +1,44 @@
 //- h2 {{ subject.subject }}
 
-header
-  div.container
-    h1 {{ subject.subject.title }}
+div#show
+  header
+    div.container
+      h1 {{ subject.subject.title }}
+      
+      div.meta
+        div.share
+          a(title="facebook")
+            span.fa.fa-facebook-square
+          a(title="twitter")
+            span.fa.fa-twitter-square 
+        
+        div.stats
+          div(title="Vues") {{ subject.subject.views || 0 }}
+            span.fa.fa-eye
+        
+          div(title="Votes") {{ subject.votes || 0 }}
+            span.fa.fa-balance-scale
+          
+          div(title="Reponses") {{ subject.subject.chunks.length || 0 }}
+            span.fa.fa-comments
+          
+          div(title="Sources") {{ subject.sources || 0 }}
+            span.fa.fa-link
+          
+          div(title="Partages") {{ subject.shared || 0 }} 
+            span.fa.fa-share-alt
 
-div.container
+
+
+  div.container.body
+    div.row
+      div.col-xs-8
+        p {{ subject.subject.problematic }}
+        hr
+
+        div.chunk(ng-repeat="chunk in subject.subject.chunks")
+          p {{ chunk.content }}
+        
+        div.btn.btn-success(ng-model="isChunkFormOpen" ng-click="isChunkFormOpen = false") add chunk
+          p {{ isChunkFormOpen }}
+        div(ng-show="isChunkFormOpen")

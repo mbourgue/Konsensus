@@ -15,6 +15,10 @@ export default class ShowSubjectController {
     });
   }
 
+  createChunk() {
+    this.$http.post('/api/subjects/'+ this.$stateParams.id +'/chunks/', { content: 'fosfodksosdfosdkffokd' });
+  }
+
   get(id) {
     // var that = this;
     return this.$http.get('/api/subjects/' + this.$stateParams.id);

@@ -54,10 +54,17 @@ export function create(req, res) {
 
 export function show(req, res) {
 
-  return Subject.findById(req.params.id)
-        .exec()
-        .then(respondWithResult(res))
-        .catch(handleError(res));
+    Subject.findById(req.params.id, function(err,subject ) {
+
+      subject.views++;
+      subject.save(function (err) {
+        if (err) return handleError(err)
+        console.log('Success!');
+      });
+
+      
+    }).then(respondWithResult(res));
+    // .catch(handleError(res));
 
 }
 
@@ -66,4 +73,17 @@ export function remove(req, res) {
     .exec()
     .then(respondWithResult(res))
     .catch(handleError(res));
+}
+
+/* CHUNK */
+export function createChunk(req, res) {
+  Subject.findById(req.params.id, function(err, subject) {
+    
+    subject.chunks.push({ content: req.body.content });
+    subject.save(function (err) {
+      if (err) return handleError(err)
+      console.log('Success!');
+    });
+    
+  } ).then(respondWithResult(res));
 }

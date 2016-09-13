@@ -1,7 +1,7 @@
 div.container
   div.col-xs-6
-    h3 {{ subjects.list.length }} Subjects
-    a.btn.btn-success.fa.fa-plus(href="/subjects/create") create
+    h3 {{ subjects.list.length }} Sujets
+    a.btn.btn-success.fa.fa-plus(href="/subjects/create")
 
   div.col-xs-6.col-sm-4.col-sm-offset-2
     ul.nav.nav-tabs
@@ -38,7 +38,7 @@ div.container
           
           th.border-right(title="Votes") {{ subject.votes || 0 }}
             br
-            span.fa.fa-thumbs-up
+            span.fa.fa-balance-scale
           
           th.border-right(title="Reponses") {{ subject.answers || 0 }}
             br

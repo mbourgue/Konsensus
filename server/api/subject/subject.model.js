@@ -2,22 +2,26 @@
 
 import mongoose from 'mongoose';
 
+var ChunkSchema = new mongoose.Schema({
+  author: String,
+  content: String,
+  sources: [{ url: String }], 
+  shared: Number,
+  rank: Number,
+  points: Number
+});
+
 var SubjectSchema = new mongoose.Schema({
   author: { type: mongoose.Schema.Types.ObjectId, ref: "User" }, 
   title: String,
+  problematic: String,
   date: { type: Date, default: Date.now() },
-  views: Number,
+  views: { type: Number, default: 0 },
   // votes: [{ author: String, }],
   // answers: ,
   tags: [],
   shared: Number,
-  chunks: [{  author: String,
-              content: String,
-              sources: [{ url: String }], 
-              shared: Number,
-              rank: Number,
-              points: Number
-          }]
+  chunks: [ChunkSchema]
        
       //  author: String
        

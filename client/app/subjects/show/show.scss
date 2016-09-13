@@ -1,5 +1,46 @@
-header {
-  margin-top: 0;
-  background: #eee;
-  color: #444;
+#show {
+  header {
+    margin-top: 0;
+    background: #eee;
+    color: #444;
+
+    padding-top: 20px;
+
+    h1 {
+      display: inline-block;
+      margin-top: 35px;
+      font-size: 1.85em;
+    }
+
+    .meta {
+      float: right;
+      .share {
+        text-align: right;
+        font-size: 2em;
+
+        a {
+          margin-left: 10px;
+        }
+      }
+      .stats {
+        text-align: right;
+
+        display: inline-block;
+
+        div {
+        display: inline-block;
+        margin: 10px;
+        margin-right: 0;
+        margin-left: 25px;
+          span {
+            margin-left: 5px;
+          } 
+        }
+      }
+    }
+    
+  }
+  .body {
+    padding-top: 15px;
+  }
 }
