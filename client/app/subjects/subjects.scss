@@ -1,38 +1,88 @@
 @import 'show/show';
 
-h3 {
-  display: inline-block;
-  // vertical-align: middle;
-  margin-right: 10px;
+.subheader {
+  position: relative;
+  height: 60px;
+
+  h3 {
+    display: inline-block;
+    margin-right: 10px;
+    font-weight: bold;
+  }
+  
+  .tabs {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+
+    .nav-tabs {
+      border-bottom: 0;
+
+      li {
+        a {
+          color: #555;
+          border-top-width: 2px;
+          border-radius: 0;
+          padding: 8px;
+          font-size: 12px;
+
+          &:hover {
+            background: #f8f8f8;
+            border-color: #ddd;
+            border-top-width: 1px;
+            margin-top: 1px;
+          }
+        }
+        
+        &.active a {
+          color: #000;
+          border-color: $color #ddd transparent;
+          background: #fff;
+          border-top-width: 2px;
+          margin-top: 0;
+        }
+      }
+    }
+  }
 }
 
-table {
-  // background:  #000;
+table, .table {
+  tbody {
+    tr {
+      cursor: pointer;
+      transition: all 0.5s;
 
-  tr {
-
-    cursor: pointer;
-    transition: all 0.5s;
-
-    &:hover {
-      background: #eee !important;
-    }
-    
-    th {
-      position: relative;
-      font-weight: normal !important;
-      text-align: center;
-
-      .label {
-        margin-right: 3px;
+      &:hover {
+        background: #f3f3f3 !important;
       }
+      
+      th {
+        position: relative;
+        font-weight: normal !important;
+        text-align: center;
+        vertical-align: middle;
 
-      &.border-right {
-        border-right: 1px solid #eee;
-      }
+        .label {
+          margin-right: 3px;
+          background: $color;
+        }
 
-      .remove {
-        position: absolute; top: 0; right: 0; color: #ddd;
+        &.fixed-small {
+          width: 80px;
+        }
+
+        &.content-width {
+          width: 1%;
+          white-space: nowrap;
+        }
+
+        .author-name {
+          font-weight: bold;
+        }
+
+        .remove {
+          position: absolute; top: 0; right: 0; color: #ddd;
+        }
       }
     }
   }

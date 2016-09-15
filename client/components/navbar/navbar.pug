@@ -19,21 +19,28 @@ div.navbar.navbar-default.navbar-static-top
           a(ui-sref='{{item.state}}') {{item.title}}
 
         li(ng-show='$ctrl.isAdmin()', ui-sref-active='active')
-          a(ui-sref='admin') Admin
+          a(ui-sref='admin') Administation
+        
+        li(ui-sref-active='active')
+          a(ui-sref='subjects') Explore
+
+        li(ng-show='$ctrl.isLoggedIn()', ui-sref-active='active')
+          a(ui-sref='subjects_create') Nouveau sujet
+      //- div.add-button(ui-sref='subjects_create') Nouveau sujet
 
       ul.nav.navbar-nav.navbar-right
         li(ng-hide='$ctrl.isLoggedIn()', ui-sref-active='active')
-          a(ui-sref='signup') Sign up
+          a(ui-sref='signup') Créer un compte
 
         li(ng-hide='$ctrl.isLoggedIn()', ui-sref-active='active')
-          a(ui-sref='login') Login
+          a(ui-sref='login') Se connecter
 
         li(ng-show='$ctrl.isLoggedIn()')
-          p.navbar-text Hello {{ $ctrl.getCurrentUser().name }}
+          p.navbar-text {{ $ctrl.getCurrentUser().name }}
 
         li(ng-show='$ctrl.isLoggedIn()', ui-sref-active='active')
           a(ui-sref='settings')
             span.glyphicon.glyphicon-cog
 
         li(ng-show='$ctrl.isLoggedIn()')
-          a(ui-sref='logout') Logout
+          a(ui-sref='logout') Se déconnecter

@@ -1,8 +1,28 @@
 .navbar {
   margin-bottom: 0;
+
+  .add-button {
+    display: inline-block;
+    margin: 8px;
+    padding: 6px;
+
+    border: 1px solid #222;
+    border-radius: 5px;
+    font-size: 13px;
+    color: #222;
+    cursor: pointer;
+    transition: background .4s, color .4s;
+
+    &:hover {
+      background: #222;
+      color: #fff;
+    }
+  }
+
   .navbar-brand {
     padding: 0;
     margin-left: 15px;
+
     .logo {
       max-height: 30px;
       margin: 10px 15px;
