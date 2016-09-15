@@ -37,8 +37,29 @@ div#show
         hr
 
         div.chunk(ng-repeat="chunk in subject.subject.chunks")
+          div.shared.btn.btn-default(title="Sources") {{ chunk.sources.length || 0 }} 
+            span.fa.fa-link
+          div.shared.btn.btn-default(title="Partages") {{ chunk.shared || 0 }} 
+            span.fa.fa-share-alt
+
+          //- | {{ chunk. }}
+          p {{ chunk.author }}
           p {{ chunk.content }}
-        
-        div.btn.btn-success(ng-model="isChunkFormOpen" ng-click="isChunkFormOpen = false") add chunk
-          p {{ isChunkFormOpen }}
-        div(ng-show="isChunkFormOpen")
+          p(ng-repeat="source in chunk.sources") {{ source.url }}
+          hr
+
+        form.chunkForm
+          div.form-group
+            textarea.form-control(placeholder="texte" ng-model="chunk.content")
+          div.form-group(ng-model="chunk.sources" ng-init="chunk.sources = [{},{}]")
+            input.form-control(placeholder="url" ng-repeat="url in chunk.sources"  ng-model="chunk.sources[$index].url")
+            button.btn.btn-default(ng-click="chunk.sources.push({})")
+              span.fa.fa-plus
+          div.form-group
+            input.btn.btn-default(type="submit" value="répondre" ng-click="subject.createChunk(chunk)")
+          p {{ chunk }}
+          
+
+        //- div.btn.btn-success(ng-model="isChunkFormOpen" ng-click="isChunkFormOpen = false") add chunk
+          //- p {{ isChunkFormOpen }}
+        //- div(ng-show="isChunkFormOpen")

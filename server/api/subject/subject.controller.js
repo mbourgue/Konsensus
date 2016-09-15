@@ -2,7 +2,6 @@
 
 import Subject from './subject.model';
 
-
 function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;
   return function(entity) {
@@ -79,7 +78,7 @@ export function remove(req, res) {
 export function createChunk(req, res) {
   Subject.findById(req.params.id, function(err, subject) {
     
-    subject.chunks.push({ content: req.body.content });
+    subject.chunks.push(req.body);
     subject.save(function (err) {
       if (err) return handleError(err)
       console.log('Success!');
