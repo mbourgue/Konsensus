@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 
 var ChunkSchema = new mongoose.Schema({
   author: String,
+  title: String,
   content: String,
   sources: [{ url: String }], 
   shared: Number,

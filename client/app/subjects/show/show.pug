@@ -3,8 +3,12 @@
 div#show
   header
     div.container
-      h1 {{ subject.subject.title }}
-      
+      div(style="float: left;")
+        h1 {{ subject.subject.title }}
+        //- | par {{ subject.subject.author.name }}
+        div.tags
+          span.label.label-default(style="margin-right: 5px;" ng-repeat="tag in subject.subject.tags track by $index") {{ tag }} 
+
       div.meta
         div.share
           a(title="facebook")
@@ -32,26 +36,45 @@ div#show
 
   div.container.body
     div.row
-      div.col-xs-8
+      div.col-xs-9
         p {{ subject.subject.problematic }}
         hr
 
         div.chunk(ng-repeat="chunk in subject.subject.chunks")
-          div.shared.btn.btn-default(title="Sources") {{ chunk.sources.length || 0 }} 
-            span.fa.fa-link
-          div.shared.btn.btn-default(title="Partages") {{ chunk.shared || 0 }} 
-            span.fa.fa-share-alt
+          //- div(style="position")
 
-          //- | {{ chunk. }}
-          p {{ chunk.author }}
-          p {{ chunk.content }}
-          p(ng-repeat="source in chunk.sources") {{ source.url }}
+          
+          div.row
+            div.vote
+              span.fa.fa-chevron-up
+              br
+              span.fa.fa-chevron-down
+            div.col-lg-9
+              //- | {{ chunk. }}
+              //- p {{ chunk.author }}
+              h2 {{ chunk.title }}
+              p {{ chunk.content }}
+            
+            div.col-lg-3(style=" text-align: right;")
+              div.shared.btn.btn-default(title="Partages") 
+                span.fa.fa-share-alt
+              div.shared.btn.btn-default(title="Sources") {{ chunk.sources.length || 0 }} 
+                span.fa.fa-link
+              //- | {{ chunk.shared || 0 }} 
+
+              div.sources
+                p(ng-repeat="source in chunk.sources")
+                  a.source(target="_blank" href="{{ source.url }}") {{ source.url }} 
+            
           hr
 
         form.chunkForm
+          h3 Argument
+          div.form-group
+            input.form-control(ng-model="chunk.title" placeholder="titre")
           div.form-group
             textarea.form-control(placeholder="texte" ng-model="chunk.content")
-          div.form-group(ng-model="chunk.sources" ng-init="chunk.sources = [{},{}]")
+          div.form-group(ng-model="chunk.sources" ng-init="chunk.sources = [{}]")
             input.form-control(placeholder="url" ng-repeat="url in chunk.sources"  ng-model="chunk.sources[$index].url")
             button.btn.btn-default(ng-click="chunk.sources.push({})")
               span.fa.fa-plus
@@ -63,3 +86,8 @@ div#show
         //- div.btn.btn-success(ng-model="isChunkFormOpen" ng-click="isChunkFormOpen = false") add chunk
           //- p {{ isChunkFormOpen }}
         //- div(ng-show="isChunkFormOpen")
+      
+      div.list-group.col-lg-3
+        a.list-group-item.active(href="#" style="text-align: center;") Résultat
+        a.list-group-item(href="#" ng-repeat="chunk in subject.subject.chunks" ng-if="chunk.title.length > 0") {{ chunk.title }}
+          span.badge 14

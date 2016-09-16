@@ -1,18 +1,24 @@
 #show {
   header {
     margin-top: 0;
-    background: #eee;
-    color: #444;
+    background: #333;
+    color: #eee;
 
-    padding-top: 20px;
+    padding-top: 30px;
 
     h1 {
       display: inline-block;
-      margin-top: 35px;
+      margin-top: 20px;
       font-size: 1.85em;
+      // float: left;
+    }
+    .tags {
+      margin-bottom: 15px;
+      font-size: 1.15em;
     }
 
     .meta {
+      margin-top: 10px;
       float: right;
       .share {
         text-align: right;
@@ -44,9 +50,45 @@
     padding-top: 15px;
 
     .chunk {
-      
+      h2 {
+        font-size: 1.5em;
+        font-weight: 600;
+        margin-top: 0px;
+        
+      }
+
+      .vote {
+        position: absolute; left: -25px; text-align: right;
+        font-weight: 900;
+
+        span {
+          font-size: 1.75em;
+          color: #aaa;
+        }
+      }
       .shared {
-        float: right;
+        // float: right;
+
+        margin-left: 5px;
+        font-size: 0.8em;
+      }
+      .sources {
+        // float: right;
+        margin-top: 10px;  
+          overflow: hidden;
+          white-space: nowrap;
+          width: 100%;
+        .source {
+
+          text-overflow: ellipsis;
+          -o-text-overflow: ellipsis;
+
+          background: #eee;
+          border: 1px;
+          padding: 5px;
+          border-radius: 3px;
+        }
+      
       }
     }
   }
