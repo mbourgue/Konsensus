@@ -26,7 +26,7 @@ div.navbar.navbar-default.navbar-static-top
 
         li(ng-show='$ctrl.isLoggedIn()', ui-sref-active='active')
           a(ui-sref='subjects_create') Nouveau sujet
-      //- div.add-button(ui-sref='subjects_create') Nouveau sujet
+      
 
       ul.nav.navbar-nav.navbar-right
         li(ng-hide='$ctrl.isLoggedIn()', ui-sref-active='active')
@@ -44,3 +44,5 @@ div.navbar.navbar-default.navbar-static-top
 
         li(ng-show='$ctrl.isLoggedIn()')
           a(ui-sref='logout') Se déconnecter
+
+      searchbar

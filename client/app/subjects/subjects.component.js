@@ -8,13 +8,15 @@ import show from './show/index';
 export class SubjectsController {
 
   /*@ngInject*/
-  constructor($scope, $http) {
+  constructor($scope, $filter, $http, SearchbarService) {
     var that = this;
     this.$http = $http;
     this.list = [];
     this.load(function(datas) {
       that.list = datas;
     });
+
+    this.search = SearchbarService;
 
 /*
     $scope.subjects = [

@@ -1,0 +1,39 @@
+.searchbar {
+ float: right;
+
+  input {
+    border-radius: 2px;
+    border: 1px solid #bbb;
+    padding: 3px;
+    padding-left: 20px;
+    font-size: 12px;
+    
+    transition: border-color .4s, background .4s, color .4s, width .4s, padding-left .4s;
+    outline: none;
+    background-color: #f4f4f4;
+    margin: 12.5px;
+    color: #999;
+    background-image: url('/assets/images/search_black.svg');
+    background-position: 5px center;
+    background-size: auto 60%;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    width: 0;
+
+    &:focus, &.ng-not-empty {
+      cursor: text;
+      border-color: $color;
+      background-color: #fefefe;
+      background-image: url('/assets/images/search_color.svg');
+      color: #333;
+      width: 200px;
+      padding-left: 23px;
+    }
+
+    &:hover {
+      border-color: $color;
+      background-color: #fefefe;
+      background-image: url('/assets/images/search_color.svg');
+    }
+ }
+}

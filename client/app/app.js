@@ -21,6 +21,7 @@ import _Auth from '../components/auth/auth.module';
 import account from './account';
 import admin from './admin';
 import navbar from '../components/navbar/navbar.component';
+import searchbar from '../components/searchbar/searchbar.component';
 import footer from '../components/footer/footer.component';
 import main from './main/main.component';
 import subjects from './subjects/subjects.component';
@@ -31,7 +32,7 @@ import socket from '../components/socket/socket.service';
 import './app.scss';
 
 angular.module('konsensusApp', [ngCookies, ngResource, ngSanitize, 'btford.socket-io', uiRouter,
-    uiBootstrap, _Auth, account, admin, navbar, footer, main, subjects, constants, socket, util
+    uiBootstrap, _Auth, account, admin, navbar, searchbar, footer, main, subjects, constants, socket, util
   ])
   .config(routeConfig)
   .run(function($rootScope, $location, Auth) {
