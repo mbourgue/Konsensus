@@ -1,9 +1,11 @@
 div.container
   div.subheader
-    h3 {{ subjects.list.length }} 
-      span(style="font-size: 16px; font-weight: normal;") sujets
+    h3 {{ (subjects.list | filter: subjects.search.text).length }} 
+      span(style="font-size: 16px; font-weight: normal;") sujet
+        span(ng-show="(subjects.list | filter: subjects.search.text).length > 1") s
+      span(style="font-size: 16px; font-weight: normal;", ng-show="subjects.search.text.length > 0")  pour "{{ subjects.search.text }}"
     
-    div.tabs
+    div.tabs(ng-show="subjects.search.text.length === 0")
       ul.nav.nav-tabs
         li.active
           a(href="#") Populaire
@@ -13,42 +15,41 @@ div.container
           a(href="#") Productif
         li
           a(href="#") Les plus partagés
-        
 
   table.table
-      tr(ng-repeat="subject in subjects.list track by $index" ui-sref="subjects_show({ id: '{{ subject._id }}' })")
-          th(style="text-align: left;")
-            span(style="font-size: 1.25em;") {{ subject.title }}
-            br
-            span.label.label-default(ng-repeat="tag in subject.tags track by $index") {{ tag }} 
-          th.content-width par 
-            span.author-name {{ subject.author.name }}
-            
-            //- div(style="")
-              //- span(style=" display: inline-block;") {{ subject.author.influence.points || 0 }}  
-              //- div(style="background: {{ subject.user.influence.pastille.color }}; width: 1px; height: 1px; padding: 3px; border-radius: 50%; display: inline-block; margin-left: 5px;")
-              //- span.fa.fa-street-view(title="Influence" style="color: {{ subject.user.influence.pastille.color }}; margin-left: 5px;")
+    tr(ng-repeat="subject in subjects.list | filter: subjects.search.text track by $index" ui-sref="subjects_show({ id: '{{ subject._id }}' })")
+        th(style="text-align: left;")
+          span(style="font-size: 1.25em;") {{ subject.title }}
+          br
+          span.label.label-default(ng-repeat="tag in subject.tags track by $index") {{ tag }} 
+        th.content-width par 
+          span.author-name {{ subject.author.name }}
+          
+          //- div(style="")
+            //- span(style=" display: inline-block;") {{ subject.author.influence.points || 0 }}  
+            //- div(style="background: {{ subject.user.influence.pastille.color }}; width: 1px; height: 1px; padding: 3px; border-radius: 50%; display: inline-block; margin-left: 5px;")
+            //- span.fa.fa-street-view(title="Influence" style="color: {{ subject.user.influence.pastille.color }}; margin-left: 5px;")
 
-          //- th {{ subject.date | date:'d MMMM yyyy' : 'UTC' }}
+        //- th {{ subject.date | date:'d MMMM yyyy' : 'UTC' }}
+        
+        th.fixed-small(title="Vues") {{ subject.views || 0 }} 
           
-          th.fixed-small(title="Vues") {{ subject.views || 0 }} 
-            
-            span.fa.fa-eye
+          span.fa.fa-eye
+        
+        th.fixed-small(title="Votes") {{ subject.votes || 0 }} 
           
-          th.fixed-small(title="Votes") {{ subject.votes || 0 }} 
-            
-            span.fa.fa-balance-scale
+          span.fa.fa-balance-scale
+        
+        th.fixed-small(title="Réponses") {{ subject.answers || 0 }} 
           
-          th.fixed-small(title="Réponses") {{ subject.answers || 0 }} 
-            
-            span.fa.fa-comments
+          span.fa.fa-comments
+        
+        th.fixed-small(title="Sources") {{ subject.sources || 0 }} 
           
-          th.fixed-small(title="Sources") {{ subject.sources || 0 }} 
-            
-            span.fa.fa-link
+          span.fa.fa-link
+        
+        th.fixed-small(title="Partages") {{ subject.shared || 0 }} 
           
-          th.fixed-small(title="Partages") {{ subject.shared || 0 }} 
-            
-            span.fa.fa-share-alt
-            i.fa.fa-remove.remove(ng-click="subjects.remove(subject)")
+          span.fa.fa-share-alt
+          i.fa.fa-remove.remove(ng-click="subjects.remove(subject)")
 

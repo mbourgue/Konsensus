@@ -8,24 +8,17 @@ import show from './show/index';
 export class SubjectsController {
 
   /*@ngInject*/
-  constructor($scope, $http, SubjectsFactory) {
+  constructor($scope, $filter, $http, SubjectsFactory, SearchbarService) {
     var that = this;
     this.$http = $http;
 
     SubjectsFactory.init();
-    
-    // $scope.subjects = SubjectsFactory.list;
 
-
+    this.search = SearchbarService;
 
     console.log($scope.subjects);
-
-    // this.list = SubjectsFactory.list;
     this.list = [];
-    SubjectsFactory.load(function(res) {
-      that.list = res;
-    });
-    // this.list =  SubjectsFactory.get();
+    SubjectsFactory.load((res) => this.list = res);
   }
 
   $onInit() {
@@ -41,6 +34,7 @@ export function SubjectsFactory($http) {
 
       init: function() {
         this.load();
+
       },
 
       add: function(el) {

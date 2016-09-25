@@ -16,6 +16,8 @@ export class SubjectGaugeKonsensusComponent {
 
     $scope.value = 5;
     this.color = "#990009";
+
+    
   }
 
   
