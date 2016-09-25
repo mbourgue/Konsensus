@@ -1,13 +1,17 @@
 //- h2 {{ subject.subject }}
 
 div#show
+
+  //- div {{ subject }}
+
   header
     div.container
       div(style="float: left;")
-        h1 {{ subject.subject.title }}
-        //- | par {{ subject.subject.author.name }}
+        h1 {{ subject.title }}
+        
+        //- | par {{ subject.author.name }}
         div.tags
-          span.label.label-default(style="margin-right: 5px;" ng-repeat="tag in subject.subject.tags track by $index") {{ tag }} 
+          span.label.label-default(style="margin-right: 5px;" ng-repeat="tag in subject.tags track by $index") {{ tag }} 
 
       div.meta
         div.share
@@ -17,13 +21,13 @@ div#show
             span.fa.fa-twitter-square 
         
         div.stats
-          div(title="Vues") {{ subject.subject.views || 0 }}
+          div(title="Vues") {{ subject.views || 0 }}
             span.fa.fa-eye
         
           div(title="Votes") {{ subject.votes || 0 }}
             span.fa.fa-balance-scale
           
-          div(title="Reponses") {{ subject.subject.chunks.length || 0 }}
+          div(title="Reponses") {{ subject.chunks.length || 0 }}
             span.fa.fa-comments
           
           div(title="Sources") {{ subject.sources || 0 }}
@@ -32,28 +36,33 @@ div#show
           div(title="Partages") {{ subject.shared || 0 }} 
             span.fa.fa-share-alt
 
-
-
   div.container.body
     div.row
       div.col-xs-9
-        p {{ subject.subject.problematic }}
+
+        gaugekonsensus(value="42")
+        
+        p(style="float: right; margin-right: 25px;") Etat: Konsensus
+
+        p {{ subject.problematic }}
         hr
 
-        div.chunk(ng-repeat="chunk in subject.subject.chunks")
+        div.chunk(ng-repeat="chunk in subject.chunks")
           //- div(style="position")
-
           
           div.row
             div.vote
-              span.fa.fa-chevron-up
-              br
-              span.fa.fa-chevron-down
+              span.fa.fa-chevron-up(ng-click="subject.voteChunk(chunk._id, '+')")
+              vote(points="subject.points")
+            
+              //- span.fa.fa-circle(style="color: #ddd; font-size: 0.9em;")
+              span.fa.fa-chevron-down(style="margin-top: -3px;" ng-click="subject.voteChunk('-')")
             div.col-lg-9
               //- | {{ chunk. }}
               //- p {{ chunk.author }}
               h2 {{ chunk.title }}
               p {{ chunk.content }}
+              p {{ chunk.points || 0 }} {{ chunk._id }}
             
             div.col-lg-3(style=" text-align: right;")
               div.shared.btn.btn-default(title="Partages") 
@@ -88,6 +97,6 @@ div#show
         //- div(ng-show="isChunkFormOpen")
       
       div.list-group.col-lg-3
-        a.list-group-item.active(href="#" style="text-align: center;") Résultat
-        a.list-group-item(href="#" ng-repeat="chunk in subject.subject.chunks" ng-if="chunk.title.length > 0") {{ chunk.title }}
+        a.list-group-item.active(href="#") Résultat
+        a.list-group-item(href="#" ng-repeat="chunk in subject.chunks" ng-if="chunk.title.length > 0") {{ chunk.title }}
           span.badge 14

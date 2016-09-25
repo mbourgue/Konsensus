@@ -74,15 +74,3 @@ export function remove(req, res) {
     .catch(handleError(res));
 }
 
-/* CHUNK */
-export function createChunk(req, res) {
-  Subject.findById(req.params.id, function(err, subject) {
-    
-    subject.chunks.push(req.body);
-    subject.save(function (err) {
-      if (err) return handleError(err)
-      console.log('Success!');
-    });
-    
-  } ).then(respondWithResult(res));
-}

@@ -8,67 +8,82 @@ import show from './show/index';
 export class SubjectsController {
 
   /*@ngInject*/
-  constructor($scope, $http) {
+  constructor($scope, $http, SubjectsFactory) {
     var that = this;
     this.$http = $http;
+
+    SubjectsFactory.init();
+    
+    // $scope.subjects = SubjectsFactory.list;
+
+
+
+    console.log($scope.subjects);
+
+    // this.list = SubjectsFactory.list;
     this.list = [];
-    this.load(function(datas) {
-      that.list = datas;
+    SubjectsFactory.load(function(res) {
+      that.list = res;
     });
-
-/*
-    $scope.subjects = [
-      {
-        name: "Name hohoho",
-        date: Date.now(),
-        votes: 39,
-        answers: 12,
-        sources: 31,
-        shared: 6,
-        views: 92,
-        user: {
-          name: "Matthieu BOURGUE",
-          influence: { points: 1345, pastille: {color: "#22EE33"} } 
-        },
-        tags: [
-          {
-            name: 'Politics'
-          },
-          {
-            name: 'Nutrition'
-          },
-          {
-            name: 'Future'
-          }
-        ]
-      },
-*/
-
-
+    // this.list =  SubjectsFactory.get();
   }
 
   $onInit() {
-
   }
+}
 
-  load(callback) {
-    this.$http.get('/api/subjects').then(function(response) {
-      // console.log(response.data);
-      callback(response.data);
-    });
-  }
+SubjectsFactory.$inject = ['$http']; 
+export function SubjectsFactory($http) {
 
-  remove(subject) {
-    // alert('remove');
-    var that = this;
-    this.$http.delete('/api/subjects/' + subject._id).then(
-      function() { that.list.splice(that.list.indexOf(subject), 1)
-      });
-  }
+    var factory = {
+      
+      list: [],
 
+      init: function() {
+        this.load();
+      },
+
+      add: function(el) {
+        this.list.push(el);
+      },
+
+      remove: function(subject) {
+        // alert('remove');
+        var that = this;
+        $http.delete('/api/subjects/' + subject._id).then(
+          function() { that.list.splice(that.list.indexOf(subject), 1)
+        });
+      },
+
+      load: function(callback) {
+        var that = this;
+        $http.get('/api/subjects').then(function(response) {
+
+          callback(response.data);
+          that.list = response.data;
+          // console.log(that.list);
+          
+        });
+      },
+
+      get: function(el) {
+        if(el === undefined) 
+          return this.list; 
+        
+        return this.list.indexOf(el);
+        
+      },
+
+      length: function() {
+        return this.list.length;
+      }
+    };
+
+    return factory;
 }
 
 export default angular.module('konsensus.subjects', [create, show])
   .config(routes)
   .controller('SubjectsController', SubjectsController)
+  .factory('SubjectsFactory', SubjectsFactory)
   .name;

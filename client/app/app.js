@@ -28,10 +28,12 @@ import constants from './app.constants';
 import util from '../components/util/util.module';
 import socket from '../components/socket/socket.service';
 
+import subject from '../components/subject/gauge_konsensus/gauge.component';
+
 import './app.scss';
 
 angular.module('konsensusApp', [ngCookies, ngResource, ngSanitize, 'btford.socket-io', uiRouter,
-    uiBootstrap, _Auth, account, admin, navbar, footer, main, subjects, constants, socket, util
+    uiBootstrap, _Auth, account, admin, navbar, footer, main, subjects, subject, constants, socket, util
   ])
   .config(routeConfig)
   .run(function($rootScope, $location, Auth) {

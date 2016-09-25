@@ -4,7 +4,7 @@
     background: #333;
     color: #eee;
 
-    padding-top: 30px;
+    padding-top: 50px;
 
     h1 {
       display: inline-block;
@@ -58,12 +58,24 @@
       }
 
       .vote {
-        position: absolute; left: -25px; text-align: right;
+        position: absolute; left: -25px;
+        text-align: center;
         font-weight: 900;
 
         span {
           font-size: 1.75em;
-          color: #aaa;
+          color: #ccc;
+          display: block;
+          transition: color 0.5s;
+          cursor: pointer;
+          
+          &.circle {
+            font-size: 0.9em;
+          }
+
+          &:hover {
+            color: #aaa;
+          }
         }
       }
       .shared {
@@ -93,3 +105,6 @@
     }
   }
 }
+
+
+

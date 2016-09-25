@@ -22,6 +22,6 @@ export default function routes($stateProvider) {
       url: '/subjects/:id',
       template: require('./show/show.pug'),
       controller: 'ShowSubjectController',
-      controllerAs: 'subject'
+      controllerAs: 'SubjectCtrl'
     });
 }

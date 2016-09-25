@@ -1,16 +1,7 @@
 'use strict';
 
 import mongoose from 'mongoose';
-
-var ChunkSchema = new mongoose.Schema({
-  author: String,
-  title: String,
-  content: String,
-  sources: [{ url: String }], 
-  shared: Number,
-  rank: Number,
-  points: Number
-});
+import Chunk from './chunk/chunk.model';
 
 var SubjectSchema = new mongoose.Schema({
   author: { type: mongoose.Schema.Types.ObjectId, ref: "User" }, 
@@ -22,7 +13,7 @@ var SubjectSchema = new mongoose.Schema({
   // answers: ,
   tags: [],
   shared: Number,
-  chunks: [ChunkSchema]
+  chunks: [Chunk.schema]
        
       //  author: String
        
