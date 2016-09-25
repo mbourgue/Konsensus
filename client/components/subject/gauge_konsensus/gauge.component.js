@@ -3,25 +3,14 @@
 
 import angular from 'angular';
 
-// import './gauge.scss';
-
 export class SubjectGaugeKonsensusComponent {
 
   constructor($scope) {
     'ngInject';
 
-    // this.isLoggedIn = Auth.isLoggedInSync;
-    // this.isAdmin = Auth.isAdminSync;
-    // this.getCurrentUser = Auth.getCurrentUserSync;
-
     $scope.value = 5;
     this.color = "#990009";
-
-    
   }
-
-  
-
 }
 
 export default angular.module('directives.subject.gauge_konsensus', [])
@@ -32,11 +21,12 @@ export default angular.module('directives.subject.gauge_konsensus', [])
 
         // scope.$ctrl.value = attrs.value
         scope.value = attrs.value;
-        console.log(controller,'  ',attrs.value);
+        console.log('oooooooooooooo');
+        console.log('ok' + controller,'  ',attrs.value);
         // let value = ;
       },
-    controller: SubjectGaugeKonsensusComponent,
+      controller: SubjectGaugeKonsensusComponent,
+      controllerAs: 'gaugeCtrl'
     };
-    // controllerAs: 'gaugeCtrl'
   })
   .name;

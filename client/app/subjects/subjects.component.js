@@ -9,14 +9,12 @@ export class SubjectsController {
 
   /*@ngInject*/
   constructor($scope, $filter, $http, SubjectsFactory, SearchbarService) {
-    var that = this;
     this.$http = $http;
 
     SubjectsFactory.init();
 
     this.search = SearchbarService;
 
-    console.log($scope.subjects);
     this.list = [];
     SubjectsFactory.load((res) => this.list = res);
   }
@@ -42,19 +40,16 @@ export function SubjectsFactory($http) {
       },
 
       remove: function(subject) {
-        // alert('remove');
-        var that = this;
         $http.delete('/api/subjects/' + subject._id).then(
-          function() { that.list.splice(that.list.indexOf(subject), 1)
-        });
+          () => this.list.splice(that.list.indexOf(subject), 1)
+        );
       },
 
       load: function(callback) {
-        var that = this;
-        $http.get('/api/subjects').then(function(response) {
+        $http.get('/api/subjects').then((response) => {
 
           callback(response.data);
-          that.list = response.data;
+          this.list = response.data;
           // console.log(that.list);
           
         });

@@ -34,7 +34,7 @@ import subject from '../components/subject/gauge_konsensus/gauge.component';
 import './app.scss';
 
 angular.module('konsensusApp', [ngCookies, ngResource, ngSanitize, 'btford.socket-io', uiRouter,
-    uiBootstrap, _Auth, account, admin, navbar, searchbar, footer, main, subjects, constants, socket, util
+    uiBootstrap, _Auth, account, admin, navbar, searchbar, footer, main, subjects, subject, constants, socket, util
   ])
   .config(routeConfig)
   .run(function($rootScope, $location, Auth) {
