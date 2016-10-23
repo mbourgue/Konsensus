@@ -7,7 +7,7 @@ div.navbar.navbar-default.navbar-statictop
         span.icon-bar
         span.icon-bar
       a.navbar-brand(href='/')
-        img.logo(src="/assets/images/logo_black.png", alt="")
+        img.logo(src="/assets/images/logo.png", alt="")
 
         //- div.input-group.col-xs-6
     //- input.form-control(type="text" placeholder="Recherche" aria-describedby="basic-addon2")
@@ -19,13 +19,14 @@ div.navbar.navbar-default.navbar-statictop
           a(ui-sref='{{item.state}}') {{item.title}}
 
         li(ng-show='$ctrl.isAdmin()', ui-sref-active='active')
-          a(ui-sref='admin') Administation
+          a(ui-sref='admin') Admin
         
         li(ui-sref-active='active')
           a(ui-sref='subjects') Explore
 
-        li(ng-show='$ctrl.isLoggedIn()', ui-sref-active='active')
-          a(ui-sref='subjects_create') Nouveau sujet
+        li.new-subject(ng-show='$ctrl.isLoggedIn()', ui-sref-active='active')
+          a(ui-sref='subjects_create')
+            span.fa.fa-plus
       
       //- div(style="margin: auto;")
       //- searchbar
@@ -37,12 +38,4 @@ div.navbar.navbar-default.navbar-statictop
         li(ng-hide='$ctrl.isLoggedIn()', ui-sref-active='active')
           a.btn.btn-default.sign-in(ui-sref='login') Sign In
 
-        li(ng-show='$ctrl.isLoggedIn()')
-          p.navbar-text {{ $ctrl.getCurrentUser().name }}
-
-        li(ng-show='$ctrl.isLoggedIn()', ui-sref-active='active')
-          a(ui-sref='settings')
-            span.glyphicon.glyphicon-cog
-
-        li(ng-show='$ctrl.isLoggedIn()')
-          a(ui-sref='logout') Se déconnecter
+        navbar-button-user

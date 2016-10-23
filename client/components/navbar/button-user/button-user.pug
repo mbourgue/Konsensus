@@ -1,0 +1,16 @@
+.user-button( uib-dropdown on-toggle="toggled(open)" ng-show="$ctrl.isLoggedIn()")
+
+  a.dropdown-trigger(href uib-dropdown-toggle )
+    button(type="button" class="btn btn-default")
+      | {{ $ctrl.getCurrentUser().name }} 
+      span.fa.fa-caret-down
+
+  ul(class="dropdown-menu" uib-dropdown-menu aria-labelledby="simple-dropdown")
+    li
+      a(ui-sref='settings') Profile
+    li
+      a(ui-sref='settings' ui-sref-active='active') Settings
+        //- span.glyphicon.glyphicon-cog
+    li(role="separator" class="divider")
+    li
+      a(ui-sref='logout') Log out
