@@ -10,6 +10,10 @@ $fa-font-path: '/assets/fonts/font-awesome/';
  * App-wide Styles
  */
 
+ html {
+   overflow-y: scroll;
+ }
+
 .browserupgrade {
   margin: 0.2em 0;
   background: #ccc;
@@ -19,15 +23,27 @@ $fa-font-path: '/assets/fonts/font-awesome/';
 
 // Component styles are injected through gulp
 /* inject:scss */
+
 @import 'admin/admin';
+
 @import 'main/main';
+
 @import 'subjects/create/create';
+
 @import 'subjects/show/show';
+
 @import 'subjects/subjects';
+
 @import '../components/footer/footer';
+
 @import '../components/modal/modal';
+
 @import '../components/navbar/navbar';
-@import '../components/searchbar/searchbar';
+
 @import '../components/oauth-buttons/oauth-buttons';
-@import '../components/subject/gauge_konsensus/gauge.scss';
+
+@import '../components/searchbar/searchbar';
+
+@import '../components/subject/gaugekonsensus/gauge';
+
 /* endinject */

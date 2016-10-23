@@ -6,8 +6,8 @@
 
 // var router = new Router();
 
-// router.post('/:id/chunks', 
-// // auth.isAuthenticated(), 
+// router.post('/:id/chunks',
+// // auth.isAuthenticated(),
 // controller.createChunk);
 
 // module.exports = router;

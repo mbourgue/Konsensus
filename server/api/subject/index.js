@@ -16,10 +16,13 @@ router.delete('/:id', controller.remove);
 
 // chunks
 
-router.post('/:id/chunks', 
-// auth.isAuthenticated(), 
+router.post('/:id/chunks/:tag_name',
+// auth.isAuthenticated(),
 chunkController.create);
 
+router.delete('/:id/chunks/:chunkid', chunkController.remove);
 router.post('/:id/chunks/:chunkid/vote', chunkController.vote);
+router.get('/:id/chunks/result', chunkController.getResult)
+router.get('/:id/tag/:tag',  chunkController.getChunks);
 
 module.exports = router;

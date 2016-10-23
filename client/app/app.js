@@ -1,5 +1,7 @@
 'use strict';
 
+// import jquery from 'jquery';
+var $ = require('jquery');
 import angular from 'angular';
 // import ngAnimate from 'angular-animate';
 import ngCookies from 'angular-cookies';

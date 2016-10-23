@@ -2,19 +2,23 @@
 
   $height: 25px; 
 
-  float: right;
+  // float: right;
   background: #ddd;
   color: #eee;
   padding: 0;
   height: $height;
   border-radius: 3px;
-  
-  .jauge {
-    border-radius: 3px;
-    text-align: center;
-    width: 45%;
-    height: $height;
-    line-height: $height;
-    background: #E43;
+
+  div {
+    
+    padding: 0;
+    .jauge {
+      border-radius: 3px;
+      text-align: center;
+      width: 45%;
+      height: $height;
+      line-height: $height;
+      background: #E43;
+    }
   }
 }

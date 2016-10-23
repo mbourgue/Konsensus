@@ -1,102 +1,205 @@
-//- h2 {{ subject.subject }}
+div.right_part.col-xs-1
+  //- gaugekonsensus(value="42")
+  //- p(style="") Etat: Konsensus
+  div.list-group.state
+    a.tag_btn.list-group-item(href="#" ng-click="state.setResult()"  ng-class="{active: state.active == 0}" )
+      span.fa.fa-remove
+      span.text Result
+    a.tag_btn.list-group-item(href="#" ng-repeat="tag in subject.tags" ng-class="{active: state.active == $index + 1 }" ng-click="state.setSubject($index + 1, tag )") {{ tag.name }}
+      //- span.badge {{ tag.chunks.length }}
 
-div#show
+  //- div.rayon_s(style="text-align: center; ")
+    div.btn.btn-default.active(style="border-radius: 0; font-size: 2em;")
+      span.fa.fa-align-justify
+    div.btn.btn-default(style="border-radius: 0; font-size: 2em;")
+      span.fa.fa-align-justify
+  
+  div(style="text-align: center;")
+    .btn.btn-default(style="text-align: center;" ng-click="gotoBottom()") Contribute
 
-  //- div {{ subject }}
+div#show.col-xs-11.col-xs-offset-1
+
+  //- p {{ subject }}
+  //- | _
+  //- div {{ subject.result }}
 
   header
     div.container
-      div(style="float: left;")
-        h1 {{ subject.title }}
-        
-        //- | par {{ subject.author.name }}
-        div.tags
-          span.label.label-default(style="margin-right: 5px;" ng-repeat="tag in subject.tags track by $index") {{ tag }} 
-
-      div.meta
-        div.share
-          a(title="facebook")
-            span.fa.fa-facebook-square
-          a(title="twitter")
-            span.fa.fa-twitter-square 
-        
-        div.stats
-          div(title="Vues") {{ subject.views || 0 }}
-            span.fa.fa-eye
-        
-          div(title="Votes") {{ subject.votes || 0 }}
-            span.fa.fa-balance-scale
+      div.row
+        div.head.col-lg-12(style="")
+          h1 {{ subject.title }}
           
-          div(title="Reponses") {{ subject.chunks.length || 0 }}
-            span.fa.fa-comments
-          
-          div(title="Sources") {{ subject.sources || 0 }}
-            span.fa.fa-link
-          
-          div(title="Partages") {{ subject.shared || 0 }} 
-            span.fa.fa-share-alt
+          //- | par {{ subject.author.name }}
+          div.tags
+            span.label.label-default(style="margin-right: 5px; font-size: 0.9em;" ng-repeat="tag in subject.tags track by $index") {{ tag.name }} 
 
-  div.container.body
-    div.row
-      div.col-xs-9
+          //- p {{ subject.tags }}
 
-        gaugekonsensus(value="42")
-        
-        p(style="float: right; margin-right: 25px;") Etat: Konsensus
-
-        p {{ subject.problematic }}
-        hr
-
-        div.chunk(ng-repeat="chunk in subject.chunks")
-          //- div(style="position")
-          
-          div.row
-            div.vote
-              span.fa.fa-chevron-up(ng-click="subject.voteChunk(chunk._id, '+')")
-              vote(points="subject.points")
-            
-              //- span.fa.fa-circle(style="color: #ddd; font-size: 0.9em;")
-              span.fa.fa-chevron-down(style="margin-top: -3px;" ng-click="subject.voteChunk('-')")
-            div.col-lg-9
-              //- | {{ chunk. }}
-              //- p {{ chunk.author }}
-              h2 {{ chunk.title }}
-              p {{ chunk.content }}
-              p {{ chunk.points || 0 }} {{ chunk._id }}
-            
-            div.col-lg-3(style=" text-align: right;")
-              div.shared.btn.btn-default(title="Partages") 
+        div.meta
+          div
+            .share
+              p.share-title
                 span.fa.fa-share-alt
-              div.shared.btn.btn-default(title="Sources") {{ chunk.sources.length || 0 }} 
-                span.fa.fa-link
-              //- | {{ chunk.shared || 0 }} 
+                | Share
+              a(href="#")
+                span.fa.fa-twitter
+              a(href="#")
+                span.fa.fa-facebook
+              a(href="")
+                span.fa.fa-google-plus
+              .share-end
+          
+         
 
-              div.sources
-                p(ng-repeat="source in chunk.sources")
-                  a.source(target="_blank" href="{{ source.url }}") {{ source.url }} 
+  .meta-subject
+    .container
+        div(style="margin: 15px 0;")
+          //- p(style="display: inline-block;") User name
+          img(style="display: inline-block; border-radius: 50%; margin-right: 15px;" src="http://placehold.it/40x40")
+          p(style="display: inline-block;") {{ subject.author.name }}
+          p(style="display: inline-block; margin-left: 15px;") le {{ subject.date |  date:'d MMMM yyyy' : 'UTC'}}
+
+          div(style="display:inline-block; margin-left: 25px;")
+            select( class="form-control" id="sel1")
+              option original (english)
+
+          .stats
+            div(title="Vues") {{ subject.views || 0 }}
+              span.fa.fa-eye
+          
+            div(title="Votes") {{ subject.meta.votes || 0 }}
+              span.fa.fa-balance-scale
             
-          hr
+            div(title="Reponses") {{ subject.meta.comments || 0 }}
+              span.fa.fa-comments
+            
+            div(title="Sources") {{ subject.meta.sources || 0 }}
+              span.fa.fa-link
+            
+            div(title="Partages") {{ subject.meta.shared || 0 }} 
+              span.fa.fa-share-alt
 
-        form.chunkForm
-          h3 Argument
-          div.form-group
-            input.form-control(ng-model="chunk.title" placeholder="titre")
-          div.form-group
-            textarea.form-control(placeholder="texte" ng-model="chunk.content")
-          div.form-group(ng-model="chunk.sources" ng-init="chunk.sources = [{}]")
-            input.form-control(placeholder="url" ng-repeat="url in chunk.sources"  ng-model="chunk.sources[$index].url")
-            button.btn.btn-default(ng-click="chunk.sources.push({})")
-              span.fa.fa-plus
-          div.form-group
-            input.btn.btn-default(type="submit" value="répondre" ng-click="subject.createChunk(chunk)")
-          p {{ chunk }}
+
+
+  .container.body
+    .row
+      div
+
+        div(style="margin-top: 15px;")
+          p {{ subject.problematic }}
+        hr
+        div(style="background: #fff; border: 2px solid #ddd; border-radius: 50%; width: 20px; height: 20px; margin: 0 auto; position: relative; bottom: 30px;")
+
+        
+        //- div(ng-show="subject.chunks.length === 0")
+          p(style="text-align: center; margin-bottom: 15px;") 
+              span.fa.fa-warning(style="font-size: 2em;")
+              br
+              | Sorry, but there are no articles on this subject.
+
+        //- RESULT
+        .chunk.result(ng-repeat="tag in subject.result" ng-show="state.isResult()" ng-hide="tag.chunks.length === 0")
           
 
-        //- div.btn.btn-success(ng-model="isChunkFormOpen" ng-click="isChunkFormOpen = false") add chunk
-          //- p {{ isChunkFormOpen }}
-        //- div(ng-show="isChunkFormOpen")
+          h2(style="margin-bottom: 10px;") {{ tag.name }}
+          //- .btn.btn-default.extend(style="float: right;" )
+          span.badge(style="margin-right: 5px; float: right; font-size: 1.1em; padding: 5px 15px;" ng-click="state.setSubject($index, tag )") {{ tag.chunks.length }} 
+           i Contributing
+          hr(style="border-top: 1px solid #aaa;")
+          
+          .row(ng-repeat="chunk in tag.chunks")
+            span.fa.fa-remove(ng-click="SubjectCtrl.removeChunk(chunk)" style="float: right; opacity: 0.075;")
+            .col-lg-12
+              .fragment(ng-repeat="fragment in chunk.fragments" style="position:relative;")
+                div.the_dot
+                div(ng-bind-html="trustedHtml(fragment.html)")
+                //- hr
+              hr(style="")
+
+       
+        //- div.col-lg-3(style=" text-align: right;")
+          div
+            //- div.shared.btn.btn-default(title="Partages") 
+              //- span.fa.fa-share-alt
+            div.shared.btn.btn-default(title="Sources") {{ chunk.sources.length || 0 }} 
+              span.fa.fa-link
+
+        //- NOT RESULT
+        .subjects(ng-show="!state.isResult()")
+          h2(style="margin-bottom: 10px;") {{ subject.tags[state.active-1].name }}
+          .chunk.subject(ng-repeat="chunk in subject.tags[state.active-1].chunks")
+            div.row
+              div.vote
+                span.fa.fa-chevron-up(ng-click="SubjectCtrl.voteChunk(chunk, '+')")
+                vote(points="subject.points")
+              
+                //- span.fa.fa-circle(style="color: #ddd; font-size: 0.9em;")
+                span.fa.fa-chevron-down(style="margin-top: -3px;" ng-click="SubjectCtrl.voteChunk(chunk, '-')")
+                p {{ chunk.score }}
+
+              .col-lg-12
+
+                div(ng-repeat="fragment in chunk.fragments" style="position:relative;")
+                  img(src="/assets/images/diamond.png" style="position: absolute; left: -25px; top:5px; max-height: 10px;")
+                  div( ng-bind-html="fragment.html")
+                  br
+
+
+              .col-lg-3(style=" text-align: right;")
+                //- div.badge(style="margin-bottom: 10px;") &bull; {{ chunk.title }}
+                div
+                  .shared.btn.btn-default(title="Partages") 
+                    span.fa.fa-share-alt
+                  .shared.btn.btn-default(title="Sources") {{ chunk.sources.length || 0 }} 
+                    span.fa.fa-link
+            hr
+
+        //- 
+        //- hr
+        //- div(st yle="background: #fff; border: 2px solid #ddd; border-radius: 50%; width: 20px; height: 20px; margin: 0 auto; position: relative; bottom: 30px;")
+        //- 
+
+        //- div(ng-show="!state.isResult() || subject.chunks.length === 0")
+            //- div.contribute.btn.btn-default(style="margin: 0 auto; font-size: 1.25em; padding: 7px 85px;" ng-init="show_form = false;" ng-click="show_form = true") Contribute
+  
+  #contribute.contribute
+    .container
+      .top_message_textarea
+        .row
+          .col-xs-2
+            img.logo(src="/assets/images/logo_black.png", alt="")
+          .col-xs-9
+            h3 Contribute
+            p Thanks for participating blablabla  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur earum ratione, aliquid sequi necessitatibus neque, blanditiis nesciunt alias unde eveniet tempore libero, molestiae incidunt eos hic beatae deleniti facilis. Facere!
+            
+            a(href="#") Guide
+            
+            //- Add Chunk Form
+            //- form.col-lg-12.chunkForm(ng-show="show_form === true")
+            //- form.col-lg-12.chunkForm
+
+              //- h3 Ajouter un Article
+
+
+      .form-group
+        //- textarea.form-control(placeholder="texte" ng-model="chunk.content")
+        //- textarea(froala="froalaOptions" ng-model="chunk.content")
+        textarea(froala="froalaOptions" ng-model="chunk.content" placeholder="OK")
+
+      //- div.form-group.col-lg-6(ng-model="chunk.sources" ng-init="chunk.sources = []")
+        input.form-control(placeholder="url" ng-repeat="url in chunk.sources"  ng-model="chunk.sources[$index].url")
+        button.btn.btn-default(ng-click="chunk.sources.push({})") Add Sources 
+          span.fa.fa-plus
       
-      div.list-group.col-lg-3
-        a.list-group-item.active(href="#") Résultat
-        a.list-group-item(href="#" ng-repeat="chunk in subject.chunks" ng-if="chunk.title.length > 0") {{ chunk.title }}
-          span.badge 14
+      //- Tag
+      .form-group.col-lg-3(style="padding: 0;")
+        p Tag / Categorie
+        select.form-control( ng-model="chunk.title" placeholder="tags")
+          option(ng-repeat="tag in subject.tags" ) {{ tag.name }}
+      
+      .form-group(style="text-align: right; margin: 0;")
+        input.contribute_btn.btn.btn-default(type="submit" value="Contribute" ng-click="SubjectCtrl.createChunk(chunk)")
+
+
+  .footer
+    h2 KONSENSUS

@@ -16,12 +16,13 @@ div.container
         li
           a(href="#") Les plus partagés
 
+  //- p {{ subjects }}
   table.table
     tr(ng-repeat="subject in subjects.list | filter: subjects.search.text track by $index" ui-sref="subjects_show({ id: '{{ subject._id }}' })")
         th(style="text-align: left;")
           span(style="font-size: 1.25em;") {{ subject.title }}
           br
-          span.label.label-default(ng-repeat="tag in subject.tags track by $index") {{ tag }} 
+          span.label.label-default(ng-repeat="tag in subject.tags track by $index") {{ tag.name }} 
         th.content-width par 
           span.author-name {{ subject.author.name }}
           

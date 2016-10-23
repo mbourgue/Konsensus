@@ -1,64 +1,269 @@
+@import url("//fonts.googleapis.com/css?family=Assistant&subset=latin");
+
+* {
+ font-family: 'Assistant', sans-serif;
+}
+
+
+
+.right_part {
+
+  position: fixed;
+  height: 100vh;
+  padding: 0;
+  background: #f7f7f7;
+  top: 52px;
+  
+  .state {
+    // text-align: center;
+    border: 1px 0;
+    border-radius: 0 !important;
+
+    .text {
+      margin-left: 10px;
+    }
+    .fa {
+      margin-left: 10px;
+    }
+    a.active {
+      border: 0;
+      color: #333;
+      background: #eee;
+
+    }
+  }
+
+  .tag_btn {
+    border: 0 !important;
+    border-bottom: 1px solid #ddd;
+    padding: 7px 0 !important;
+    &.active {
+      background: #f5f5f5;
+      color: #444;
+    }
+  }
+}
+
 #show {
+  padding:0;
+
+  p {
+    font-size: 1.1em;
+  }
+
   header {
     margin-top: 0;
     background: #333;
     color: #eee;
+    text-align: center;
 
-    padding-top: 50px;
+    background-image: url("http://america.aljazeera.com/content/ajam/articles/2015/2/20/the-short-brutal-life-of-male-chickens/jcr:content/headlineImage.adapt.1460.high.chickens_gender_chicks.1424723125237.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    background-position-y: 80%;
 
-    h1 {
-      display: inline-block;
-      margin-top: 20px;
-      font-size: 1.85em;
-      // float: left;
+    .container {
+      position: relative;
     }
-    .tags {
-      margin-bottom: 15px;
-      font-size: 1.15em;
-    }
+    .head {
+      padding-bottom: 125px;
+      padding-top: 150px;
 
-    .meta {
-      margin-top: 10px;
-      float: right;
-      .share {
-        text-align: right;
-        font-size: 2em;
+      h1 {
+        display: inline-block;
+        margin-top: 20px;
+        font-size: 3.5em;
+        // float: left;
+        text-align: center;
+        // font-weight: 900;
 
-        a {
-          margin-left: 10px;
+         -webkit-text-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
+        -moz-text-shadow:    0px 0px 5px 0px rgba(0, 0, 0, 0.2);
+        text-shadow:         0px 3px 7px rgba(0, 0, 0, 0.6);
+
+      }
+      .tags {
+        margin-bottom: 15px;
+        font-size: 1.3em;
+
+        .label {
+          font-weight: 200;
+          color: #eee;
+          background-color: rgba(20,20,20,0.65);
         }
       }
-      .stats {
-        text-align: right;
+    }
 
-        display: inline-block;
 
-        div {
+    .meta {
+      float: right;
+
+      .share {
+        position: absolute;
+        right: 0;
+        top: 30px;
+        text-align: center;
+        font-size: 1em;
+        color: #444;
+
+        .share-title {
+          margin: 0;
+          border-radius: 5px 0 0 5px;
+          background: #fcfcfc;
+          padding: 7px 25px;
+          display: inline-block;
+
+          span {
+            margin-top: 3px;
+            margin-right: 5px;
+          }
+        }
+        span {
+          vertical-align: top;
+        }
+
+        
+        a {
+          color: #fff;
+
+          span {
+            font-size: 25px;
+            padding: 5px 10px; 
+
+            &.fa-twitter {
+              padding-left: 12px;
+              padding-right: 12px;
+              background: #55acee;
+            }
+            &.fa-facebook {
+              padding-top: 6px;
+              padding-bottom: 7px;
+              padding-left: 17px;
+              padding-right: 17px;
+              font-size: 22px;
+              background: #3b5998;
+            }
+            &.fa-google-plus {
+              background: #dd4b39;
+            }
+          }
+        }
+
+        .share-end {
+          background: #fefefe;
+          width: 15px;
+          height: 35px;
+          border-radius: 0 5px 5px 0;
+          display: inline-block;
+          vertical-align: top;
+        }
+      }
+      
+    }
+    
+  }
+
+
+  .meta-subject {
+
+    background: #f8f8f8;
+    .stats {
+      // position: absolute;
+      // left: 0;
+      // top: 0;
+      text-align: right;
+      float: right;
+      display: inline-block;
+      font-size: 1.25em;
+      color: #444;
+
+      div {
         display: inline-block;
         margin: 10px;
         margin-right: 0;
         margin-left: 25px;
-          span {
-            margin-left: 5px;
-          } 
-        }
+        span {
+          margin-left: 5px;
+          display: inline-block;
+        } 
       }
     }
-    
   }
+
   .body {
-    padding-top: 15px;
+    // padding-top: 15px;
+    text-align: justify;
+    padding: 15px 30px;
+
+   
+
+    .state {
+      // margin-top: 15px;
+      font-size: 1.05em;
+      
+      -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
+      -moz-box-shadow:    0px 0px 5px 0px rgba(0, 0, 0, 0.2);
+      box-shadow:         0px 0px 5px 0px rgba(0, 0, 0, 0.2);
+
+      
+    }
 
     .chunk {
+
+      // border-bottom: 1px solid #ddd;
+      // &:last-child {
+        // border-bottom: 0;
+      // }
+
+      /* FRAGMENTS */
+      .fragment {
+        padding: 10px 0;
+        
+
+        a {
+          color: #444;
+          text-decoration: none;
+          background: rgba(240,20,20,0.1);
+          border-radius: 3px;
+          // border: 2px solid rgba(240,20,20,0.1);
+          // padding: 2px 5px;
+        }
+      }
+      /* */
+
+      &.result {
+        margin-bottom: 15px;
+      }
+
       h2 {
-        font-size: 1.5em;
+        font-size: 1.9em;
         font-weight: 600;
         margin-top: 0px;
-        
+        display: inline-block;
+        vertical-align: bottom;
+      }
+
+
+      hr {
+        margin-top: 0;
+      }
+
+      .the_dot {
+        width: 7px;
+        height: 7px;
+        background: #e45;
+        position: absolute; left: -20px; top:20px; max-height: 10px;
+        border-radius: 50%;
+      }
+
+      .extend {
+        border-color: #ccc;
+        border: 1px solid #ddd;
+        border-radius: 0;
       }
 
       .vote {
-        position: absolute; left: -25px;
+        position: absolute; left: -50px;
         text-align: center;
         font-weight: 900;
 
@@ -103,8 +308,98 @@
       
       }
     }
+
+  
+
+  }
+
+}
+
+.chunkForm {
+  float: none;
+  margin: 0 auto;
+  padding: 0;
+  
+  
+  h3 {
+    text-align: center;
+  }
+
+  textarea {
+    min-height: 300px;
+  }
+
+  input.btn {
+    float: right;
   }
 }
 
+.contribute {
+  padding: 70px 0;
+  background: #f2f2f2;
 
 
+  .top_message_textarea {
+    
+    color: #444;
+    background: #fafafa;
+    margin: 0;
+    padding: 15px;
+    text-align: left;
+    border-radius: 4px;
+      
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow:    0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+    box-shadow:         0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+
+    margin-bottom: 40px;
+
+    h3 {
+      margin-top: 10px;
+    }
+
+    p {
+      color: #666;
+    }
+
+    img {
+      max-height: 150px;
+      padding: 5px 20px;
+    }
+
+  }
+
+
+  .contribute_btn {
+    border-radius: 2px;
+    border: 0;
+    background: #444;
+    
+    color: #eee;
+    margin: 0 auto;
+    padding: 10px 45px;
+    font-size: 1.45em;
+    margin-top: 20px;
+
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow:    0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+    box-shadow:         0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+  }
+}
+// .contribute_container {
+
+
+// }
+
+
+
+
+.footer {
+  background: #222;
+  color: #eee;
+  text-align: center;
+  padding: 20px 0;
+  h2 {
+    
+  }
+}

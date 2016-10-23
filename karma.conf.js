@@ -1,8 +1,10 @@
 // Karma configuration
 // http://karma-runner.github.io/0.13/config/configuration-file.html
+
 /*eslint-env node*/
 
-import makeWebpackConfig from './webpack.make';
+// import makeWebpackConfig from './webpack.make';
+var makeWebpackConfig = require('./webpack.make');
 
 module.exports = function(config) {
   config.set({
@@ -40,7 +42,7 @@ module.exports = function(config) {
     },
 
     plugins: [
-      require('karma-chai-plugins'),
+      // require('karma-chai-plugins'),
       require('karma-chrome-launcher'),
       require('karma-coverage'),
       require('karma-firefox-launcher'),
@@ -83,7 +85,7 @@ module.exports = function(config) {
     // - Safari (only Mac)
     // - PhantomJS
     // - IE (only Windows)
-    browsers: ['PhantomJS'],
+    browsers: ['PhantomJS', 'Chrome'],
 
     // Continuous Integration mode
     // if true, it capture browsers, run tests and exit

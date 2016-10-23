@@ -1,6 +1,8 @@
 .navbar {
   margin-bottom: 0;
-
+  background: #fcfcfc;
+  z-index: 1337;
+  
   .add-button {
     display: inline-block;
     margin: 8px;
@@ -27,5 +29,20 @@
       max-height: 30px;
       margin: 10px 15px;
     }
+  }
+
+  .sign-up, .sign-in {
+    padding: 5px 15px;
+    margin: 10px 0;
+    border: 0;
+  }
+
+  .sign-up {
+    color: #eee !important;
+    background: #444;
+    margin-right: 5px;
+  }
+  .sign-in {
+    // background: #eee;
   }
 }

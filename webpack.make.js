@@ -41,6 +41,7 @@ module.exports = function makeWebpackConfig(options) {
             app: './client/app/app.js',
             polyfills: './client/polyfills.js',
             vendor: [
+                // 'jquery'
                 'angular',
                 'angular-animate',
                 'angular-aria',
@@ -256,7 +257,20 @@ module.exports = function makeWebpackConfig(options) {
         // Disabled when in test mode or not in build mode
         new ExtractTextPlugin('[name].[hash].css', {
             disable: !BUILD || TEST
+        }),
+
+
+        // Plugin: ProvidePlugin
+        // Why?: http://blog.johnnyreilly.com/2016/05/the-mysterious-case-of-webpack-angular-and-jquery.html
+        // Description: all references in the code to window.jQuery will be replaced
+        //              with a reference to the webpack module that contains jQuery
+        //
+        new webpack.ProvidePlugin({
+            "window.jQuery": "jquery",
+            "jQuery": "jquery"
         })
+
+
     ];
 
     if(!TEST) {
