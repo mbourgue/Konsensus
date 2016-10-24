@@ -4,13 +4,10 @@
   background: #333;
   z-index: 1337;
   
-
-
   .add-button {
     display: inline-block;
     margin: 8px;
     padding: 6px;
-
     border: 1px solid #222;
     border-radius: 5px;
     font-size: 13px;
@@ -21,24 +18,6 @@
     &:hover {
       background: #222;
       color: #fff;
-    }
-  }
-
-  .navbar-collapse {
-
-    ul {
-
-      li {
-        a {
-          color: #eee !important;
-        }
-
-        &.active {
-          a {
-            background: #444 !important;
-          }
-        }
-      }
     }
   }
 
@@ -59,40 +38,39 @@
   }
 
   .sign-up {
+    background: #eee;
+    color: #444 !important;
+
+    &:hover {
+      background: #fff !important;
+    }
+  }
+  .sign-in {
     color: #eee !important;
     background: #444;
     margin-right: 5px;
   }
-  .sign-in {
-    // background: #eee;
+
+  .menu {
+      li {
+        a {
+          color: #eee !important;
+        }
+
+        &.active {
+          a {
+            background: #444 !important;
+          }
+        }
+      }
   }
 
   .navbar-nav {
-
-
-
-
-    .new-subject {
-      // padding: 9px;
-      
-      a {
-        // background: #444;
-        // padding: 3px 5px;
-
-        &:active {
-          // background: #eee;
-        }
-      }
-    }
-
-
     @import './button-user/button-user';
-
   }
 }
 
 @media (min-width: 768px) {
-
   .navbar {
       border-radius: 0; // Override the default border-radius: 4px
   }
