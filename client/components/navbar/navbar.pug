@@ -24,6 +24,9 @@ div.navbar.navbar-default.navbar-statictop
         li(ui-sref-active='active')
           a(ui-sref='subjects') Explore
 
+        li(ui-sref-active='active')
+          a(href="#") How it Work
+
         li.new-subject(ng-show='$ctrl.isLoggedIn()', ui-sref-active='active')
           a(ui-sref='subjects_create')
             span.fa.fa-plus

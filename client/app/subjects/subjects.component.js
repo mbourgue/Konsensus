@@ -11,28 +11,25 @@ export class SubjectsController {
   constructor($scope, $filter, $http, SubjectsFactory, SearchbarService) {
     this.$http = $http;
 
-    SubjectsFactory.init();
-
+    this.service = SubjectsFactory;
     this.search = SearchbarService;
 
-    this.list = [];
-    SubjectsFactory.load((res) => this.list = res);
+    SubjectsFactory.init();
   }
 
   $onInit() {
   }
 }
 
-SubjectsFactory.$inject = ['$http']; 
-export function SubjectsFactory($http) {
+export function SubjectsFactory($http, Auth) {
+    'ngInject';
 
-    var factory = {
+    return {
       
       list: [],
 
       init: function() {
         this.load();
-
       },
 
       add: function(el) {
@@ -40,35 +37,31 @@ export function SubjectsFactory($http) {
       },
 
       remove: function(subject) {
-        $http.delete('/api/subjects/' + subject._id).then(
-          () => this.list.splice(that.list.indexOf(subject), 1)
-        );
+        if(Auth.isAdminSync) {  // Admin Check
+          $http.delete('/api/subjects/' + subject._id).then(
+            () => this.list.splice(this.list.indexOf(subject), 1)
+          );
+        }
       },
 
       load: function(callback) {
         $http.get('/api/subjects').then((response) => {
-
-          callback(response.data);
           this.list = response.data;
-          // console.log(that.list);
-          
         });
       },
 
+      // when .get() (no parameters) it return the complete list
       get: function(el) {
         if(el === undefined) 
           return this.list; 
-        
+
         return this.list.indexOf(el);
-        
       },
 
       length: function() {
         return this.list.length;
       }
     };
-
-    return factory;
 }
 
 export default angular.module('konsensus.subjects', [create, show])

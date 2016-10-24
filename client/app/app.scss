@@ -21,6 +21,15 @@ $fa-font-path: '/assets/fonts/font-awesome/';
   padding: 0.2em 0;
 }
 
+$primary_color: #333;
+
+
+@media (min-width: 1600px) {
+  .container {
+    width: 1400px;
+  }
+} 
+
 // Component styles are injected through gulp
 /* inject:scss */
 

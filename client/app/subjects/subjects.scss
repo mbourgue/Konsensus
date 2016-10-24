@@ -3,42 +3,71 @@
 .subheader {
   position: relative;
   height: 60px;
-
+  margin-top: 50px;
+  
   h3 {
     display: inline-block;
     margin-right: 10px;
     font-weight: bold;
   }
   
+  .switch_format {
+    float: left;
+    .on,.off {
+      background: #fff;
+      display: inline-block;
+      // display: inline-block;
+      padding: 10px 20px;
+    }
+
+    .on {
+      border-radius: 10px 0 0 10px;
+    }
+    .off {
+      border-radius: 0 10px 10px 0;
+    }
+  }
+  
   .tabs {
-    position: absolute;
-    bottom: 0;
-    right: 0;
+    float: right;
 
     .nav-tabs {
       border-bottom: 0;
 
       li {
         a {
+          background: #f7f7f7;
           color: #555;
           border-top-width: 2px;
           border-radius: 0;
-          padding: 8px;
-          font-size: 12px;
+          padding: 10px 15px;
+          font-size: 14px;
+          margin: 0;
+
+          border: 0;
+          margin-top: 0;
+
+          border-right: 1px solid rgba(0,0,0,0.1);
 
           &:hover {
-            background: #f8f8f8;
-            border-color: #ddd;
-            border-top-width: 1px;
-            margin-top: 1px;
+            background: #fff;
+  
           }
+        }
+
+        &:first-child {
+          a { border-radius: 10px 0 0 10px; }
+        }
+        &:last-child {
+          a { border-radius: 0 10px 10px 0; border-right: 0;}
         }
         
         &.active a {
           color: #000;
-          border-color: $color #ddd transparent;
+          // border-color: #ddd transparent;
           background: #fff;
-          border-top-width: 2px;
+          // border-top-width: 2px;
+          border: 0;
           margin-top: 0;
         }
       }
@@ -47,24 +76,34 @@
 }
 
 table, .table {
+  border: 0 !important;
   tbody {
     tr {
+      position: relative;
       cursor: pointer;
       transition: all 0.5s;
 
+      background: #fefefe !important;
+
+
       &:hover {
-        background: #f3f3f3 !important;
+        background: #eee !important;
       }
       
       th {
+        border-top: 0;
         position: relative;
         font-weight: normal !important;
         text-align: center;
         vertical-align: middle;
 
+        
+
         .label {
+          margin-top: 10px;
           margin-right: 3px;
-          background: $color;
+          background: #555;
+          font-size: 0.9em;
         }
 
         &.fixed-small {

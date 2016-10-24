@@ -1,11 +1,23 @@
+style.
+  body { 
+    background: #f2f2f2;
+  }
+
 div.container
+
   div.subheader
-    h3 {{ (subjects.list | filter: subjects.search.text).length }} 
+    //- h3 {{ (subjects.service.list | filter: subjects.search.text).length }} 
       span(style="font-size: 16px; font-weight: normal;") sujet
         span(ng-show="(subjects.list | filter: subjects.search.text).length > 1") s
       span(style="font-size: 16px; font-weight: normal;", ng-show="subjects.search.text.length > 0")  pour "{{ subjects.search.text }}"
     
-    div.tabs(ng-show="subjects.search.text.length === 0")
+    .switch_format
+      .on
+        span.fa.fa-th-list
+      .off
+        span.fa.fa-th-large
+    
+    .tabs(ng-show="subjects.search.text.length === 0")
       ul.nav.nav-tabs
         li.active
           a(href="#") Populaire
@@ -17,12 +29,15 @@ div.container
           a(href="#") Les plus partagés
 
   //- p {{ subjects }}
+
+
+  //- LIST OF SUBJECTS
   table.table
-    tr(ng-repeat="subject in subjects.list | filter: subjects.search.text track by $index" ui-sref="subjects_show({ id: '{{ subject._id }}' })")
-        th(style="text-align: left;")
-          span(style="font-size: 1.25em;") {{ subject.title }}
-          br
-          span.label.label-default(ng-repeat="tag in subject.tags track by $index") {{ tag.name }} 
+    tr(ng-repeat="subject in subjects.service.list | filter: subjects.search.text track by $index")
+        th(style="text-align: left;"  ui-sref="subjects_show({ id: '{{ subject._id }}' })")
+          div(style="font-size: 1.4em; margin-bottom: 5px;") {{ subject.title }}
+          div
+            span.label.label-default(ng-repeat="tag in subject.tags track by $index") {{ tag.name }} 
         th.content-width par 
           span.author-name {{ subject.author.name }}
           
@@ -34,23 +49,18 @@ div.container
         //- th {{ subject.date | date:'d MMMM yyyy' : 'UTC' }}
         
         th.fixed-small(title="Vues") {{ subject.views || 0 }} 
-          
           span.fa.fa-eye
         
         th.fixed-small(title="Votes") {{ subject.votes || 0 }} 
-          
           span.fa.fa-balance-scale
         
         th.fixed-small(title="Réponses") {{ subject.answers || 0 }} 
-          
           span.fa.fa-comments
         
         th.fixed-small(title="Sources") {{ subject.sources || 0 }} 
-          
           span.fa.fa-link
         
         th.fixed-small(title="Partages") {{ subject.shared || 0 }} 
-          
           span.fa.fa-share-alt
-          i.fa.fa-remove.remove(ng-click="subjects.remove(subject)")
+          i.fa.fa-remove.remove(ng-click="subjects.service.remove(subject)")
 
