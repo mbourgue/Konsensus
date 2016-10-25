@@ -18,10 +18,8 @@ export class NavbarButtonUserComponent {
 }
 
 export default angular.module('directives.navbar.user', [])
-
   .component('navbarButtonUser', {
     template: require('./button-user.pug'),
     controller: NavbarButtonUserComponent
   })
-  
   .name;

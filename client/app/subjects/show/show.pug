@@ -1,6 +1,10 @@
-div.right_part.col-xs-1
+style.
+  body {
+    background: #f8f8f8;
+  }
+
+//- div.right_part.col-xs-1
   //- gaugekonsensus(value="42")
-  //- p(style="") Etat: Konsensus
   div.list-group.state
     a.tag_btn.list-group-item(href="#" ng-click="state.setResult()"  ng-class="{active: state.active == 0}" )
       span.fa.fa-remove
@@ -17,7 +21,7 @@ div.right_part.col-xs-1
   div(style="text-align: center;")
     .btn.btn-default(style="text-align: center;" ng-click="gotoBottom()") Contribute
 
-div#show.col-xs-11.col-xs-offset-1
+div#show.col-xs-12
 
   //- p {{ subject }}
   //- | _
@@ -87,8 +91,8 @@ div#show.col-xs-11.col-xs-offset-1
 
         div(style="margin-top: 15px;")
           p {{ subject.problematic }}
-        hr
-        div(style="background: #fff; border: 2px solid #ddd; border-radius: 50%; width: 20px; height: 20px; margin: 0 auto; position: relative; bottom: 30px;")
+        //- hr
+        //- div(style="background: #fff; border: 2px solid #ddd; border-radius: 50%; width: 20px; height: 20px; margin: 0 auto; position: relative; bottom: 30px;")
 
         
         //- div(ng-show="subject.chunks.length === 0")
@@ -103,7 +107,7 @@ div#show.col-xs-11.col-xs-offset-1
 
           h2(style="margin-bottom: 10px;") {{ tag.name }}
           //- .btn.btn-default.extend(style="float: right;" )
-          span.badge(style="margin-right: 5px; float: right; font-size: 1.1em; padding: 5px 15px;" ng-click="state.setSubject($index, tag )") {{ tag.chunks.length }} 
+          span.badge(ng-click="state.setSubject($index + 1, tag)" style="margin-right: 5px; float: right; font-size: 1.1em; padding: 5px 15px;") {{ tag.chunks.length }} 
            i Contributing
           hr(style="border-top: 1px solid #aaa;")
           

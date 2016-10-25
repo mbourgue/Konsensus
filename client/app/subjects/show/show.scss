@@ -11,14 +11,17 @@
   position: fixed;
   height: 100vh;
   padding: 0;
-  background: #f7f7f7;
-  top: 52px;
-  
+  background: $primary_color;
+  top: 50px;
+  // min-width: 150px;
   .state {
     // text-align: center;
     border: 1px 0;
     border-radius: 0 !important;
 
+    a {
+       border-radius: 0 !important;
+    }
     .text {
       margin-left: 10px;
     }
@@ -34,18 +37,22 @@
   }
 
   .tag_btn {
+    background: #444;
+    color: #eee;
     border: 0 !important;
     border-bottom: 1px solid #ddd;
     padding: 7px 0 !important;
     &.active {
       background: #f5f5f5;
-      color: #444;
+      color: #eee;
     }
   }
 }
 
 #show {
   padding:0;
+  
+  // margin-left: 150px;
 
   p {
     font-size: 1.1em;
@@ -109,7 +116,7 @@
         .share-title {
           margin: 0;
           border-radius: 5px 0 0 5px;
-          background: #fcfcfc;
+          background: #f3f3f3;
           padding: 7px 25px;
           display: inline-block;
 

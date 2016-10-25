@@ -10,25 +10,33 @@ $fa-font-path: '/assets/fonts/font-awesome/';
  * App-wide Styles
  */
 
- html {
-   overflow-y: scroll;
- }
+html
+{
+    overflow-y: scroll;
+}
 
-.browserupgrade {
-  margin: 0.2em 0;
-  background: #ccc;
-  color: #000;
-  padding: 0.2em 0;
+.browserupgrade
+{
+    margin: .2em 0;
+    padding: .2em 0;
+
+    color: #000;
+    background: #ccc;
 }
 
 $primary_color: #333;
 
-
-@media (min-width: 1600px) {
-  .container {
-    width: 1400px;
-  }
-} 
+body
+{
+    margin-top: 50px;
+}
+@media (min-width: 1600px)
+{
+    .container
+    {
+        width: 1400px;
+    }
+}
 
 // Component styles are injected through gulp
 /* inject:scss */
@@ -46,6 +54,8 @@ $primary_color: #333;
 @import '../components/footer/footer';
 
 @import '../components/modal/modal';
+
+@import '../components/navbar/button-user/button-user';
 
 @import '../components/navbar/navbar';
 
